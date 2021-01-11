@@ -1,0 +1,223 @@
+openapi: 3.0.1
+info:
+  title: Car Hire Rental
+  version: 0.1.0
+  contact:
+    name: Loredana Costea
+  description: Car Hire Rental API
+servers:
+  - url: http://localhost:{port}
+    description: local environment
+    variables:
+      port:
+        default: '8091'
+tags:
+  - name: rental
+    description: Rental resource
+security:
+  - oAuth:
+      - write
+      - read
+paths:
+  /rental:
+    get:
+      tags:
+        - rental
+      summary: get rentals
+      description: returns a list of all the reservations, without any filtering
+      operationId: getRentals
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RentalDTO'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    post:
+      tags:
+        - rental
+      summary: add a new rental
+      description: adds a new reservation and returns it
+      operationId: addRental
+      requestBody:
+        description: The data of the rental to insert. The id and status will be generated automatically.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RentalDTO'
+            example:
+              userId: 1
+              carId: 100
+              startDateTime: 2021-01-30T08:30:00Z
+              endDateTime: 2021-04-30T08:30:00Z
+      responses:
+        '200':
+          description: the created rental
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RentalDTO'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorDTO'
+    Unauthorized:
+      description: unauthorized
+    BadRequest:
+      description: bad request
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ValidationDTO'
+    ServerError:
+      description: internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorDTO'
+  schemas:
+    ValidationDTO:
+      type: object
+      properties:
+        code:
+          type: string
+        field:
+          type: string
+        description:
+          type: string
+    ErrorDTO:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    UserDTO:
+      type: object
+      properties:
+        id:
+          type: string
+          description: id of the user
+        email:
+          type: string
+          description: email of the user
+        password:
+          type: string
+          description: password of the user
+        username:
+          type: string
+          description: username of the user
+        firstName:
+          type: string
+          description: first name of the user
+        lastName:
+          type: string
+          description: last name of the user
+        licenseNumber:
+          type: string
+          description: license number of the user
+        status:
+          type: string
+          enum:
+            - ACTIVE
+            - DELETED
+          description: status of the user
+        title:
+          type: string
+          description: title of the user
+    CarDTO:
+      type: object
+      properties:
+        id:
+          type: string
+          description: id of the car
+        make:
+          type: string
+          example: BMW, FORD, AUDI
+          description: make of the car
+        model:
+          type: string
+          example: X5, 7 Series, A3, I8
+          description: model of the car
+        year:
+          type: integer
+          description: year of the car
+        mileage:
+          type: integer
+          format: int64
+          description: mileage of the car
+        fuel:
+          type: string
+          example: Diesel
+          description: fuel type of the car
+        sizeClass:
+          type: string
+          example: Minicompact, Compact, Mid-Size, Large
+          description: size class of the car
+        carStatus:
+          type: string
+          enum:
+            - ACTIVE
+            - DELETED
+          description: status of the car
+    RentalDTO:
+      type: object
+      properties:
+        id:
+          type: string
+          description: id of the rental
+        userId:
+          type: string
+          description: id of the user
+        carId:
+          type: string
+          description: id of the car
+        startDateTime:
+          type: string
+          format: date-time
+          description: the start date and time on which the reservation was created
+        endDateTime:
+          type: string
+          format: date-time
+          description: the end date and time on which the reservation was cancelled
+        rentalStatus:
+          type: string
+          enum:
+            - ACTIVE
+            - CANCELLED
+          description: status of the car
+  securitySchemes:
+    oAuth:
+      type: oauth2
+      description: This API uses OAuth2 with the password flow
+      flows:
+        password:
+          tokenUrl: /oauth/token
+          scopes:
+            read: get information from the API
+            write: use the API to make changes to the supporting data model
