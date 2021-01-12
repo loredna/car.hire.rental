@@ -57,8 +57,8 @@ paths:
             schema:
               $ref: '#/components/schemas/RentalDTO'
             example:
-              userId: 1
-              carId: 100
+              userId: "5fc4e026eb133812da921526"
+              carId: "5ffb17a827674414ee348851"
               startDateTime: 2021-01-30T08:30:00Z
               endDateTime: 2021-04-30T08:30:00Z
       responses:

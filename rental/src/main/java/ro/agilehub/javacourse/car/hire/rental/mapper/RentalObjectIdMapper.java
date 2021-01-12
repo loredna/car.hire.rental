@@ -2,7 +2,6 @@ package ro.agilehub.javacourse.car.hire.rental.mapper;
 
 import org.bson.types.ObjectId;
 import org.mapstruct.Mapper;
-import ro.agilehub.javacourse.car.hire.rental.domain.UserDO;
 
 @Mapper(componentModel = "spring")
 public interface RentalObjectIdMapper {

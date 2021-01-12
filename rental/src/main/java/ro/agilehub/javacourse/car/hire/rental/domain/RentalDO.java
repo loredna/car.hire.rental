@@ -3,7 +3,7 @@ package ro.agilehub.javacourse.car.hire.rental.domain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.bson.types.ObjectId;
-import ro.agilehub.javacourse.car.hire.api.model.RentalDTO;
+import ro.agilehub.javacourse.car.hire.rental.api.model.RentalDTO;
 
 import java.time.OffsetDateTime;
 

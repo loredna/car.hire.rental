@@ -2,7 +2,7 @@ package ro.agilehub.javacourse.car.hire.rental.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import ro.agilehub.javacourse.car.hire.api.model.RentalDTO;
+import ro.agilehub.javacourse.car.hire.rental.api.model.RentalDTO;
 import ro.agilehub.javacourse.car.hire.rental.domain.RentalDO;
 
 @Mapper(componentModel = "spring", uses = {RentalObjectIdMapper.class})
