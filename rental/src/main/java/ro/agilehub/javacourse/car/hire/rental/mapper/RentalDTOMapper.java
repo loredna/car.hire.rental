@@ -13,6 +13,7 @@ public interface RentalDTOMapper {
     RentalDTO toRentalDTO(RentalDO rentalDO);
 
     @Mapping(target = "id", source = "rentalDTO.id")
-    @Mapping(target = "status", source = "rentalDTO.rentalStatus")
+    @Mapping(target = "status", source = "rentalDTO.rentalStatus",
+            defaultExpression = "java(ro.agilehub.javacourse.car.hire.rental.api.model.RentalDTO.RentalStatusEnum.ACTIVE)")
     RentalDO toRentalDO(RentalDTO rentalDTO);
 }

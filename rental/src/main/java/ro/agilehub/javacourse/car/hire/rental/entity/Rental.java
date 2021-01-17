@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import ro.agilehub.javacourse.car.hire.rental.api.model.RentalDTO;
 
+import java.sql.Timestamp;
 import java.time.OffsetDateTime;
 
 @Data
@@ -19,8 +20,8 @@ public class Rental {
     @Field("_id")
     private ObjectId id;
     private String user;
-    private String carId;
-    private OffsetDateTime startDateTime;
-    private OffsetDateTime endDateTime;
+    private String car;
+    private Timestamp startDateTime;
+    private Timestamp endDateTime;
     private RentalDTO.RentalStatusEnum status;
 }

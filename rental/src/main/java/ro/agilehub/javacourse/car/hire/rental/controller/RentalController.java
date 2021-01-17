@@ -28,7 +28,7 @@ public class RentalController implements RentalApi {
     @Override
     public ResponseEntity<RentalDTO> addRental(@Valid RentalDTO rentalDTO) {
         RentalDO rentalDO = mapper.toRentalDO(rentalDTO);
-        rentalDO.setStatus(RentalDTO.RentalStatusEnum.ACTIVE);
+        //rentalDO.setStatus(RentalDTO.RentalStatusEnum.ACTIVE);
         return ResponseEntity.ok(mapper.toRentalDTO(rentalService.createNewRental(rentalDO)));
     }
 }

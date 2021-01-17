@@ -3,7 +3,9 @@ package ro.agilehub.javacourse.car.hire.rental.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import ro.agilehub.javacourse.car.hire.rental.client.core.model.CarDTO;
 import ro.agilehub.javacourse.car.hire.rental.client.core.model.UserDTO;
+import ro.agilehub.javacourse.car.hire.rental.client.core.specification.CarApi;
 import ro.agilehub.javacourse.car.hire.rental.client.core.specification.UserApi;
 import ro.agilehub.javacourse.car.hire.rental.domain.RentalDO;
 import ro.agilehub.javacourse.car.hire.rental.entity.Rental;
@@ -21,17 +23,19 @@ public class RentalServiceImpl implements RentalService {
     private RentalDOMapper mapper;
 
     private final UserApi userApi;
+    private final CarApi carApi;
 
-    public RentalServiceImpl(UserApi userApi) {
+    public RentalServiceImpl(UserApi userApi, CarApi carApi) {
         this.userApi = userApi;
+        this.carApi = carApi;
     }
 
     @Override
     public RentalDO createNewRental(RentalDO rentalDO) {
         //todo: add some validation
         ResponseEntity<UserDTO> user = userApi.getUser(rentalDO.getUserId());
-        Rental rental = mapper.toRental(rentalDO);
-        rental.setUser(user.getBody().getFirstName() + " " + user.getBody().getLastName());
+        ResponseEntity<CarDTO> car = carApi.getCar(rentalDO.getCarId());
+        Rental rental = mapper.toRental(rentalDO, user.getBody(), car.getBody());
         return mapper.toRentalDO(rentalRepository.save(rental));
     }
 }

@@ -14,7 +14,8 @@ servers:
 tags:
   - name: user
     description: User resource
-
+  - name: car
+    description: Car resource
 paths:
   /user:
     get:
@@ -137,12 +138,37 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/ServerError'
-    delete:
+  /fleet:
+    get:
       tags:
-        - user
-      summary: removes a user
-      description: deletes a user identified by id
-      operationId: removeUser
+        - car
+      summary: get cars
+      description: returns a list of all the cars, without any filtering
+      operationId: getCars
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CarDTO'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /fleet/{id}:
+    get:
+      tags:
+        - car
+      summary: get a car
+      description: returns the details for a car, based on id
+      operationId: getCar
       parameters:
         - in: path
           name: id
@@ -152,6 +178,10 @@ paths:
       responses:
         '200':
           description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarDTO'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
