@@ -16,9 +16,7 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class RentalServiceImpl implements RentalService {
 
-    @Autowired
-    private RentalManager rentalManager;
-
+    private final RentalManager rentalManager;
     private final UserManager userManager;
     private final CarManager carManager;
 

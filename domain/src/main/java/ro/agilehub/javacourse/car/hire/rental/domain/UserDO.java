@@ -1,13 +1,12 @@
 package ro.agilehub.javacourse.car.hire.rental.domain;
 
 import lombok.*;
-import org.bson.types.ObjectId;
 
 @Data
 @EqualsAndHashCode(of = "id")
 public class UserDO {
 
-    private ObjectId id;
+    private String id;
     private String email;
     private String password;
     private String username;

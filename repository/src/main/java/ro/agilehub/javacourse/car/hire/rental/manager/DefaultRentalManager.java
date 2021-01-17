@@ -17,7 +17,6 @@ public class DefaultRentalManager implements RentalManager {
     @Override
     public RentalDO save(RentalDO rentalDO) {
         var newRental = mapper.toRental(rentalDO);
-        rentalRepository.save(newRental);
         return mapper.toRentalDO(rentalRepository.save(newRental));
     }
 }

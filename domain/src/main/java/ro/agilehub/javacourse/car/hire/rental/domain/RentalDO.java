@@ -2,7 +2,6 @@ package ro.agilehub.javacourse.car.hire.rental.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.bson.types.ObjectId;
 
 import java.time.OffsetDateTime;
 
@@ -10,7 +9,7 @@ import java.time.OffsetDateTime;
 @EqualsAndHashCode(of = "id")
 public class RentalDO {
 
-    private ObjectId id;
+    private String id;
     private String userId;
     private String carId;
     private OffsetDateTime startDateTime;
