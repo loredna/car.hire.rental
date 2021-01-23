@@ -10,7 +10,7 @@ servers:
     description: local environment
     variables:
       port:
-        default: '8091'
+        default: '8090'
 tags:
   - name: rental
     description: Rental resource
@@ -217,7 +217,7 @@ components:
       description: This API uses OAuth2 with the password flow
       flows:
         password:
-          tokenUrl: /oauth/token
+          tokenUrl: http://localhost:8080/oauth/token
           scopes:
             read: get information from the API
             write: use the API to make changes to the supporting data model
