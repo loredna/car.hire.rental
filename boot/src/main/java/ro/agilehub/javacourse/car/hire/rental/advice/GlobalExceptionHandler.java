@@ -1,4 +1,4 @@
-package ro.agilehub.javacourse.car.hire.rental.boot.advice;
+package ro.agilehub.javacourse.car.hire.rental.advice;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

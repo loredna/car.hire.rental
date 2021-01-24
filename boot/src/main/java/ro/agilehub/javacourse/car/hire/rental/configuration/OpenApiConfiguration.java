@@ -1,4 +1,4 @@
-package ro.agilehub.javacourse.car.hire.rental.boot.configuration;
+package ro.agilehub.javacourse.car.hire.rental.configuration;
 
 import org.springdoc.core.SpringDocConfigProperties;
 import org.springdoc.core.SpringDocConfiguration;

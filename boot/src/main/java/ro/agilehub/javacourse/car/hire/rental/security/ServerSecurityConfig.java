@@ -1,4 +1,4 @@
-package ro.agilehub.javacourse.car.hire.rental.boot.security;
+package ro.agilehub.javacourse.car.hire.rental.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
