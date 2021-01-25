@@ -1,10 +1,10 @@
 openapi: 3.0.1
 info:
-  title: Car Hire Rental
+  title: Rental API
   version: 0.1.0
   contact:
     name: Loredana Costea
-  description: Car Hire Rental API
+  description: Rental Management
 servers:
   - url: http://localhost:{port}
     description: local environment
@@ -60,7 +60,7 @@ paths:
               userId: "5fc4e026eb133812da921526"
               carId: "5ffb17a827674414ee348851"
               startDateTime: "2021-01-17T13:41:25.084+00:00"
-              endDateTime: "2022-01-17T13:41:25.084+00:00"
+              endDateTime: "2021-02-17T13:41:25.084+00:00"
       responses:
         '200':
           description: the created rental
